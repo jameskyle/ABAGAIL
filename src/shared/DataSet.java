@@ -14,12 +14,12 @@ public class DataSet implements Copyable, Iterable<Instance> {
      * The list of instances
      */
     private Instance[] instances;
-    
+
     /**
      * The description of the data set
      */
     private DataSetDescription description;
-    
+
     /**
      * Make a new data set from the given instances
      * @param instances the instances
@@ -29,7 +29,7 @@ public class DataSet implements Copyable, Iterable<Instance> {
         this.instances = instances;
         this.description = description;
     }
-    
+
     /**
      * Make a new data set with the given instances
      * @param instances the instances
@@ -37,7 +37,7 @@ public class DataSet implements Copyable, Iterable<Instance> {
     public DataSet(Instance[] instances) {
         this.instances = instances;
     }
-    
+
     /**
      * Get the size of the data set
      * @return the size of the data set
@@ -45,7 +45,7 @@ public class DataSet implements Copyable, Iterable<Instance> {
     public int size() {
         return instances.length;
     }
-    
+
     /**
      * Get the ith instance
      * @param i the index
@@ -54,7 +54,7 @@ public class DataSet implements Copyable, Iterable<Instance> {
     public Instance get(int i) {
         return instances[i];
     }
-    
+
     /**
      * Set the ith instance
      * @param i the index
@@ -63,7 +63,7 @@ public class DataSet implements Copyable, Iterable<Instance> {
     public void set(int i, Instance instance) {
         instances[i] = instance;
     }
-    
+
     /**
      * Get the description of the data set
      * @return the description
@@ -71,7 +71,7 @@ public class DataSet implements Copyable, Iterable<Instance> {
     public DataSetDescription getDescription() {
         return description;
     }
-    
+
     /**
      * Set the description
      * @param description the new description
@@ -79,7 +79,7 @@ public class DataSet implements Copyable, Iterable<Instance> {
     public void setDescription(DataSetDescription description) {
         this.description = description;
     }
-    
+
     /**
      * Get the instances
      * @return the instances
@@ -113,7 +113,7 @@ public class DataSet implements Copyable, Iterable<Instance> {
         }
         return new DataSet(labels, labelDescription);
     }
-    
+
     /**
      * @see java.lang.Object#toString()
      */

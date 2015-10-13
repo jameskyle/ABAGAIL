@@ -13,8 +13,8 @@ import java.text.*;
 
 /**
  * Implementation of randomized hill climbing, simulated annealing, and genetic algorithm to
- * find optimal weights to a neural network that is classifying abalone as having either fewer 
- * or more than 15 rings. 
+ * find optimal weights to a neural network that is classifying abalone as having either fewer
+ * or more than 15 rings.
  *
  * @author Hannah Lau
  * @version 1.0
@@ -24,7 +24,7 @@ public class AbaloneTest {
 
     private static int inputLayer = 7, hiddenLayer = 5, outputLayer = 1, trainingIterations = 1000;
     private static BackPropagationNetworkFactory factory = new BackPropagationNetworkFactory();
-    
+
     private static ErrorMeasure measure = new SumOfSquaresError();
 
     private static DataSet set = new DataSet(instances);

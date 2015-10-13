@@ -1,7 +1,8 @@
 #!/bin/bash
 # edit the classpath to to the location of your ABAGAIL jar file
 #
-export CLASSPATH=./lib/ABAGAIL.jar:$CLASSPATH
+#export CLASSPATH=./lib/ABAGAIL.jar:$CLASSPATH
+export CLASSPATH=../ABAGAIL.jar:$CLASSPATH
 mkdir -p data/plot logs image
 
 # four peaks
