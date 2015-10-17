@@ -5,11 +5,11 @@ OUTPUT=${OUTPUT:-results}
 
 array=(
     AssignmentTwo
-#    ContinuousPeaksTest
-#    CountOnesTest
-#    FlipFlopTest
-#    FourPeaksTest
-#    KnapsackTest
+    ContinuousPeaksTest
+    CountOnesTest
+    FlipFlopTest
+    FourPeaksTest
+    KnapsackTest
 )
 
 mkdir -p ${OUTPUT}
