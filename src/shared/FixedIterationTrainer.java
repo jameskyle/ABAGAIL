@@ -6,17 +6,17 @@ package shared;
  * @version 1.0
  */
 public class FixedIterationTrainer implements Trainer {
-    
+
     /**
      * The inner trainer
      */
     private Trainer trainer;
-    
+
     /**
      * The number of iterations to train
      */
     private int iterations;
-    
+
     /**
      * Make a new fixed iterations trainer
      * @param t the trainer
@@ -37,6 +37,6 @@ public class FixedIterationTrainer implements Trainer {
         }
         return sum / iterations;
     }
-    
+
 
 }

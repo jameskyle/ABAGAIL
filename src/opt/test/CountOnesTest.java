@@ -27,15 +27,18 @@ import opt.prob.ProbabilisticOptimizationProblem;
 import shared.FixedIterationTrainer;
 
 /**
- * 
+ *
  * @author Andrew Guillory gtg008g@mail.gatech.edu
  * @version 1.0
  */
 public class CountOnesTest {
     /** The n value */
     private static final int N = 80;
-    
+
     public static void main(String[] args) {
+        int it = args.length > 0 ? Integer.parseInt(args[0]): 1000;
+        double start, end, trainingTime, accuracy;
+
         int[] ranges = new int[N];
         Arrays.fill(ranges, 2);
         EvaluationFunction ef = new CountOnesEvaluationFunction();
@@ -43,29 +46,55 @@ public class CountOnesTest {
         NeighborFunction nf = new DiscreteChangeOneNeighbor(ranges);
         MutationFunction mf = new DiscreteChangeOneMutation(ranges);
         CrossoverFunction cf = new UniformCrossOver();
-        Distribution df = new DiscreteDependencyTree(.1, ranges); 
+        Distribution df = new DiscreteDependencyTree(.1, ranges);
         HillClimbingProblem hcp = new GenericHillClimbingProblem(ef, odd, nf);
         GeneticAlgorithmProblem gap = new GenericGeneticAlgorithmProblem(ef, odd, mf, cf);
         ProbabilisticOptimizationProblem pop = new GenericProbabilisticOptimizationProblem(ef, odd, df);
-        
-        RandomizedHillClimbing rhc = new RandomizedHillClimbing(hcp);      
-        FixedIterationTrainer fit = new FixedIterationTrainer(rhc, 200);
+
+        RandomizedHillClimbing rhc = new RandomizedHillClimbing(hcp);
+        FixedIterationTrainer fit = new FixedIterationTrainer(rhc, it);
+        start = System.nanoTime();
         fit.train();
-        System.out.println(ef.value(rhc.getOptimal()));
-        
+        end = System.nanoTime();
+        trainingTime = end - start;
+        trainingTime /= Math.pow(10,9);
+
+        System.out.printf("%s,%d,%.2f,%.2f\n", "RHC", it, trainingTime, ef.value(rhc.getOptimal()));
+        // System.out.println(ef.value(rhc.getOptimal()));
+
         SimulatedAnnealing sa = new SimulatedAnnealing(100, .95, hcp);
-        fit = new FixedIterationTrainer(sa, 200);
+        fit = new FixedIterationTrainer(sa, it);
+
+        start = System.nanoTime();
         fit.train();
-        System.out.println(ef.value(sa.getOptimal()));
-        
+        end = System.nanoTime();
+        trainingTime = end - start;
+        trainingTime /= Math.pow(10,9);
+
+        System.out.printf("%s,%d,%.2f,%.2f\n", "SA", it, trainingTime, ef.value(sa.getOptimal()));
+        //System.out.println(ef.value(sa.getOptimal()));
+
         StandardGeneticAlgorithm ga = new StandardGeneticAlgorithm(20, 20, 0, gap);
-        fit = new FixedIterationTrainer(ga, 300);
+        fit = new FixedIterationTrainer(ga, it);
+
+        start = System.nanoTime();
         fit.train();
-        System.out.println(ef.value(ga.getOptimal()));
-        
+        end = System.nanoTime();
+        trainingTime = end - start;
+        trainingTime /= Math.pow(10,9);
+
+        System.out.printf("%s,%d,%.2f,%.2f\n", "GA", it, trainingTime, ef.value(ga.getOptimal()));
+        //System.out.println(ef.value(ga.getOptimal()));
+
         MIMIC mimic = new MIMIC(50, 10, pop);
-        fit = new FixedIterationTrainer(mimic, 100);
+        fit = new FixedIterationTrainer(mimic, it);
+        start = System.nanoTime();
         fit.train();
-        System.out.println(ef.value(mimic.getOptimal()));
+        end = System.nanoTime();
+        trainingTime = end - start;
+        trainingTime /= Math.pow(10,9);
+
+        System.out.printf("%s,%d,%.2f,%.2f\n", "MIMIC", it, trainingTime, ef.value(mimic.getOptimal()));
+        //System.out.println(ef.value(mimic.getOptimal()));
     }
 }
